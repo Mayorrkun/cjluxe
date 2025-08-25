@@ -11,10 +11,36 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('orders')){
+            Schema::create('orders', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('customer_id')->constrained('customers');
+                $table->string('reference');
+                $table->enum('status',['pending','processing','completed','cancelled'])->default('pending');
+                $table->string('address');
+                $table->string('city');
+                $table->string('state');
+                $table->decimal('total',10, 2);
+                $table->timestamps();
+            });
+        }
+        if(!Schema::hasTable('order_items')){
+            Schema::create('order_items', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('order_id')
+                    ->constrained('orders')
+                    ->onDelete('cascade');
+                $table->foreignId('product_id')
+                    ->constrained('products')
+                    ->onDelete('cascade');
+                $table->integer('quantity');
+                $table->decimal('price');
+                $table->decimal('discount',10,2);
+
+
+            });
+        }
+
     }
 
     /**

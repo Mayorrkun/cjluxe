@@ -20,7 +20,9 @@ return new class extends Migration
                 $table->decimal('price',10,2);
                 $table->decimal('discount',10,2);
                 $table->string('sku')->unique();
-                $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+                $table->foreignId('category_id')
+                    ->constrained('categories')
+                    ->onDelete('cascade');
                 $table->boolean('sold_out')->default(false);
                 $table->timestamps();
             });
@@ -29,7 +31,9 @@ return new class extends Migration
         if(!Schema::hasTable('product_images')){
             Schema::create('product_images', function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+                $table->foreignId('product_id')
+                    ->constrained('products')->
+                    onDelete('cascade');
                 $table->string('img_src');
                 $table->timestamps();
             });
