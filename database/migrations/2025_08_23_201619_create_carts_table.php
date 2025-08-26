@@ -19,7 +19,8 @@ return new class extends Migration
                     ->constrained('users')
                     ->nullable()
                     ->onDelete('cascade');
-                $table->string('session_id')->nullable();
+                $table->string('session_id')
+                    ->nullable();
                 $table->enum('status',['active','checked_out','cancelled'])
                     ->default('active');
                 $table->timestamps();
