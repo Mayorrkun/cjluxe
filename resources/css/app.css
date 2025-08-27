@@ -1,6 +1,44 @@
 @import "@fortawesome/fontawesome-free/css/all.css";
-
+@import"./navbar.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+    font-family: 'MTNBrighterSans-Bold';
+    src: url('/resources/fonts/MTNBrighterSans-Bold.woff') format('woff'), /* Adjust path and format as needed */
+    url('/resources/fonts/MTNBrighterSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MTNBrighterSans-Light';
+    src: url('/resources/fonts/MTNBrighterSans-Light.woff') format('woff'), /* Adjust path and format as needed */
+    url('/resources/fonts/MTNBrighterSans-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MTNBrighterSans-Medium';
+    src: url('/resources/fonts/MTNBrighterSans-Medium.woff') format('woff'), /* Adjust path and format as needed */
+    url('/resources/fonts/MTNBrighterSans-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MTNBrighterSans-MediumItalic';
+    src: url('/resources/fonts/MTNBrighterSans-MediumItalic.woff') format('woff'), /* Adjust path and format as needed */
+    url('/resources/fonts/MTNBrighterSans-MediumItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'MTNBrighterSans-Regular';
+    src: url('/resources/fonts/MTNBrighterSans-Regular.woff') format('woff'), /* Adjust path and format as needed */
+    url('/resources/fonts/MTNBrighterSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
