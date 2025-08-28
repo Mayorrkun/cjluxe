@@ -17,11 +17,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setActive('/', 'home');
 })
-
-window.addEventListener("scroll", function(){
-    const mini =  document.getElementById('second-nav');
-
-    if(window.scrollY >= mini.clientHeight){
-        mini.classList.toggle('sticky');
-    }
-})

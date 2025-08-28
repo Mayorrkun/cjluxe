@@ -14,7 +14,7 @@ return new class extends Migration
         if(!Schema::hasTable('orders')){
             Schema::create('orders', function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('customer_id')->constrained('customers');
+                $table->foreignId('user_id')->constrained('user');
                 $table->string('reference');
                 $table->enum('status',['pending','processing','completed','cancelled'])->default('pending');
                 $table->string('address');

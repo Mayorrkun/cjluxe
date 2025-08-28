@@ -8,7 +8,7 @@ class Orders extends Model
 {
     //
     protected $fillable =[
-        'customer_id',
+        'user_id',
         'reference',
         'status',
         'address',
@@ -19,7 +19,7 @@ class Orders extends Model
     public function orderItems(){
         return $this->hasmany(OrderItems::class);
     }
-    public function customers(){
-        return $this->belongsTo(Customers::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

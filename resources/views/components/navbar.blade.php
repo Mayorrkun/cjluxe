@@ -22,7 +22,7 @@
         </button>
     </div>
 </nav>
-<ul id="second-nav" class="hidden md:flex text-[16px] py-[5px] shadow-md font-[600] px-[20px] gap-[20px] border-t-[1px] border-t-gray-300" style="font-family: MTNBrighterSans-Medium">
+<ul  class="sticky top-0 z-50 hidden md:flex text-[16px] py-[5px] bg-white shadow-md font-[600] px-[20px] gap-[20px] border-t-[1px] border-t-gray-300" style="font-family: MTNBrighterSans-Medium">
    <li class="mr-[100px]" style=""><i class="fa fa-shopping-bag">CJluxury</i></li>
     <li id="home" class="px-[10px]"><a href=""> Home </a></li>
     <li id="about" class="px-[10px]"><a href=""> New Arrrivals </a></li>
