@@ -6,7 +6,7 @@
        @if(Auth::check())
 
         @else
-            <a href=""
+            <a href="{{route('login.page')}}"
                class="text-[#ffffff] bg-blue-600 py-[4px] text-[16px] px-[10px] inline-flex rounded-[10px] leading-[20.8px] font-[600] ">Sign In</a>
        @endif
         <form class="flex " role="search" method="GET">
