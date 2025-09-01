@@ -20,11 +20,6 @@ class Admin
             dd('Not Logged In');
         }
 
-        // Check if user is admin
-        if (Auth::user()->user_type === 'admin') {
-            return $next($request);
-        }
-
         // If not admin, show unauthorized error
         abort(403, 'Unauthorized access.');
 

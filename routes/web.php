@@ -11,11 +11,11 @@ Route::get('/', [GeneralController::class, 'index'])->name('home');
 
 Route::get('/admin/home', function () {
     return view('Admin.home');
-})->middleware(Admin::class);
+});
 
 //Log in Routes
 Route::get('/login-page',[AuthenticatedSessionController::class, 'create'])->middleware(GuestMiddleware::class)->name('login.page');
-
+Route::get('/login',[AuthenticatedSessionController::class, 'store'])->name('login');
 
 //Register Routes
 Route::get('/register-page',[RegisteredUserController::class, 'create'])->middleware(GuestMiddleware::class)->name('register.page');

@@ -16,24 +16,28 @@
 <main class="flex w-full">
     <section class="md:w-1/2 mr-auto bg-black h-screen bg-opacity-95 py-[10px] justify-center flex">
         <form action="{{route('register')}}" method="POST" class="items-center flex flex-col">
+            @csrf
             <h1 class="text-white text-[26px]  max-w-[300px] px-[100px] sign-in-header font-[400] mb-[20px]">Register</h1>
 
             <label style="font-family: MTNBrighterSans-Light" class="block text-[14px] leading-[18px] self-start text-white mt-[20px] mb-[5px]" for="">First Name</label>
             <input name="first_name" class="block bg-transparent border-white rounded-full text-[#ffffff] border text-[18px] md:w-[500px]" type="text" placeholder="First Name">
+            <x-error name="first_name"></x-error>
 
             <label style="font-family: MTNBrighterSans-Light" class="block text-[14px] leading-[18px] self-start text-white mt-[20px] mb-[5px]" for="">Last Name</label>
             <input name="last_name" class="block bg-transparent border-white rounded-full text-[#ffffff] border text-[18px] md:w-[500px]" type="text" placeholder="Last Name">
-
+            <x-error name="last_name"></x-error>
 
 
             <label style="font-family: MTNBrighterSans-Light" class="block text-[14px] leading-[18px] self-start text-white mt-[20px] mb-[5px]" for="">Email Address</label>
             <input name="email" class="block bg-transparent border-white rounded-full text-[#ffffff] border text-[18px] md:w-[500px]" type="text" placeholder="Email Address">
-
+            <x-error name="email"></x-error>
             <label style="font-family: MTNBrighterSans-Light" class="block text-[14px] leading-[18px] self-start text-white mt-[20px] mb-[5px]" for="">Password</label>
             <input name="password" id="passwordInput" class="block bg-transparent border-white rounded-full text-[#ffffff] border text-[18px] md:w-[500px]" type="password" placeholder="Password">
+            <x-error name="password"></x-error>
 
             <label style="font-family: MTNBrighterSans-Light" class="block text-[14px] leading-[18px] self-start text-white mt-[20px] mb-[5px]" for="">Confirm Password</label>
             <input name="password_confirmed" id="passwordInput" class="block bg-transparent border-white rounded-full text-[#ffffff] border text-[18px] md:w-[500px]" type="password" placeholder="Password">
+            <x-error name="password_confirmed"></x-error>
 
             <input type="submit" value="Register" class=" mt-[20px] bg-[#ffffff] text-[20px] md:w-[500px] rounded-full" style="font-family: MTNBrighterSans-Medium">
             {{--        Log into Account--}}

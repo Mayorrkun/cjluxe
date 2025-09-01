@@ -1,1 +1,4 @@
-<h1>Only Admins Can See This</h1>
+<x-admin.layout>
+
+
+</x-admin.layout>

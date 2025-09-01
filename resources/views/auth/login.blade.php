@@ -16,14 +16,16 @@
 <main class="flex w-full">
     <section class="md:w-1/2 ml-auto bg-black h-screen bg-opacity-95 py-[100px] justify-center flex">
         <form action="" class=" items-center flex flex-col">
+            @csrf
             <h1 class="text-white text-[26px]  max-w-[300px] px-[100px] sign-in-header font-[400] mb-[30px]">Sign In</h1>
 
             <label style="font-family: MTNBrighterSans-Light" class="block text-[14px] leading-[18px] self-start text-white mt-[20px] mb-[5px]" for="">Email Address</label>
             <input name="email" class="block bg-transparent border-white rounded-full text-[#ffffff] border text-[20px] md:w-[500px]" type="text" placeholder="Email Address">
-
+            <x-error name="email"></x-error>
             <label style="font-family: MTNBrighterSans-Light" class="block text-[14px] leading-[18px] self-start text-white mt-[20px] mb-[5px]" for="">Password</label>
             <input name="password" id="passwordInput" class="block bg-transparent border-white rounded-full text-[#ffffff] border text-[20px] md:w-[500px]" type="password" placeholder="Password">
-          <button style="font-family: MTNBrighterSans-Regular" type="button" class="block w-full text-left text-[16px] mt-[20px] text-[#ffffff]" id="ShowPassword"> <span>Show Password </span><i id="eye" class="fa fa-eye"></i></button>
+            <x-error name="password"></x-error>
+            <button style="font-family: MTNBrighterSans-Regular" type="button" class="block w-full text-left text-[16px] mt-[20px] text-[#ffffff]" id="ShowPassword"> <span>Show Password </span><i id="eye" class="fa fa-eye"></i></button>
             <input type="submit" value="Sign In" class="bg-[#ffffff] text-[20px] md:w-[500px] rounded-full" style="font-family: MTNBrighterSans-Medium">
 
 
