@@ -1,0 +1,66 @@
+
+@font-face {
+    font-family: 'MTNBrighterSans-Bold';
+    src: url('/resources/fonts/MTNBrighterSans-Bold.woff') format('woff'), /* Adjust path and format as needed */
+    url('/resources/fonts/MTNBrighterSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MTNBrighterSans-Light';
+    src: url('/resources/fonts/MTNBrighterSans-Light.woff') format('woff'), /* Adjust path and format as needed */
+    url('/resources/fonts/MTNBrighterSans-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MTNBrighterSans-Medium';
+    src: url('/resources/fonts/MTNBrighterSans-Medium.woff') format('woff'), /* Adjust path and format as needed */
+    url('/resources/fonts/MTNBrighterSans-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MTNBrighterSans-MediumItalic';
+    src: url('/resources/fonts/MTNBrighterSans-MediumItalic.woff') format('woff'), /* Adjust path and format as needed */
+    url('/resources/fonts/MTNBrighterSans-MediumItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'MTNBrighterSans-Regular';
+    src: url('/resources/fonts/MTNBrighterSans-Regular.woff') format('woff'), /* Adjust path and format as needed */
+    url('/resources/fonts/MTNBrighterSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SSTBold' ;
+    src: url('/resources/fonts/sst/SSTBold.ttf') format('truetype'),
+    url('/resources/fonts/sst/SSTBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SSTBoldIt' ;
+    src: url('/resources/fonts/sst/SSTBoldIt.ttf') format('truetype'),
+    url('/resources/fonts/sst/SSTBoldIt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SSTHeavy' ;
+    src: url('/resources/fonts/sst/SSTHeavy.ttf') format('truetype'),
+    url('/resources/fonts/sst/SSTHeavy.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SSTHeavyIt' ;
+    src: url('/resources/fonts/sst/SSTHeavyIt.ttf') format('truetype'),
+    url('/resources/fonts/sst/SSTHeavyIt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}

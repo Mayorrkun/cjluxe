@@ -7,3 +7,12 @@
     /* overflow: hidden; */
     z-index: 1;
 }
+
+.outlined {
+    filter:
+        drop-shadow(1px 0 black)
+        drop-shadow(-1px 0 black)
+        drop-shadow(0 1px black)
+        drop-shadow(0 -1px black);
+}
+

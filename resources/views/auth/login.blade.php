@@ -15,7 +15,7 @@
 </nav>
 <main class="flex w-full">
     <section class="md:w-1/2 ml-auto bg-black h-screen bg-opacity-95 py-[100px] justify-center flex">
-        <form action="" class=" items-center flex flex-col">
+        <form action="{{route('login')}}" method="POST" class=" items-center flex flex-col">
             @csrf
             <h1 class="text-white text-[26px]  max-w-[300px] px-[100px] sign-in-header font-[400] mb-[30px]">Sign In</h1>
 

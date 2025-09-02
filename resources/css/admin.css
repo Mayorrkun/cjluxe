@@ -1,0 +1,29 @@
+:root{
+    --desktop-nav-width: 250px;
+    --primary-color: black;
+}
+
+.admin-side-nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--desktop-nav-width);
+    height: 100vh;
+    background-color: var(--primary-color);
+    padding: 25px 0 0 0;
+    z-index: 100;
+
+}
+
+.content{
+    margin-left: var(--desktop-nav-width);
+}
+
+.side-active-a{
+    border-color: transparent;
+    border-bottom: cornflowerblue;
+    border-style: solid;
+    border-width: 3px;
+    /* overflow: hidden; */
+    z-index: 1;
+}
