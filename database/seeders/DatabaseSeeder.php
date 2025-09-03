@@ -26,5 +26,7 @@ class DatabaseSeeder extends Seeder
 
         $test_user = User::where('email', 'mayokun@test.com')->first();
         $test_user->assignRole('admin');
+
+        $this->call(CategorySeeder::class);
     }
 }

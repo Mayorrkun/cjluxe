@@ -1,7 +1,7 @@
 <nav class="hidden md:flex py-[5px] bg-white ">
-    <div class="max-h-[50px] ml-[50px]">
+    <a href="{{route('home')}}" class="max-h-[50px] ml-[50px]">
         <img src="{{url('images/logo/logo.png')}}" alt="try again" class=" h-[60px]">
-    </div>
+    </a>
     <div class=" text-[20px] ml-auto relative flex flex-row justify-center items-center gap-[20px] px-[20px]">
        @if(Auth::check())
            <div class="flex gap-[20px] max-h-[50px]">
@@ -34,9 +34,8 @@
 </nav>
 <ul  class="sticky top-0 z-50 hidden md:flex text-[16px] py-[5px] bg-white shadow-md font-[600] px-[20px] gap-[20px] border-t-[1px] border-t-gray-300" style="font-family: MTNBrighterSans-Medium">
    <li class="mr-[100px]" style=""><i class="fa fa-shopping-bag logo inline-flex">CJluxury</i></li>
-    <li id="home" class="px-[10px]"><a href=""> Home </a></li>
-    <li id="about" class="px-[10px]"><a href=""> New Arrrivals </a></li>
-    <li id="about" class="px-[10px]"><a href=""> Categories </a></li>
+    <li id="home" class="px-[10px]"><a href="{{route('home')}}"> Home </a></li>
+    <li id="categories" class="px-[10px]"><a href="{{route('categories.index')}}"> Categories </a></li>
     <li id="contact" class="px-[10px]"><a href=""> Contact Us </a></li>
 
 </ul>

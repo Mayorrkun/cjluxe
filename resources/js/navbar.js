@@ -16,4 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     setActive('/', 'home');
+    setActive('/categories', 'categories');
+    setActive('/contact', 'contact');
 })

@@ -19,7 +19,6 @@ return new class extends Migration
                 $table->integer('quantity')->default(0);
                 $table->decimal('price',10,2);
                 $table->decimal('discount',10,2);
-                $table->string('sku')->unique();
                 $table->foreignId('category_id')
                     ->constrained('categories')
                     ->onDelete('cascade');

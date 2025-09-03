@@ -26,4 +26,10 @@ Route::get('/register-page',[RegisteredUserController::class, 'create'])->middle
 Route::post('/register',[RegisteredUserController::class, 'store'])->middleware(GuestMiddleware::class)->name('register');
 
 Route::get('logout',[AuthenticatedSessionController::class, 'destroy'])->middleware(AuthMiddleware::class)->name('logout');
+
+//categories page
+Route::get('/categories',[GeneralController::class, 'categoryIndex'])->name('categories.index');
+
+
+
 require __DIR__.'/auth.php';
