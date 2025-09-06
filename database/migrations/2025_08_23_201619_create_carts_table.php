@@ -30,7 +30,7 @@ return new class extends Migration
         if(!Schema::hasTable('cart_items')){
             Schema::create('cart_items', function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('carts')
+                $table->foreignId('cart_id')
                     ->constrained('carts')
                     ->onDelete('cascade');
                 $table->foreignId('product_id')
@@ -39,6 +39,7 @@ return new class extends Migration
                 $table->integer('quantity')->default(1);
                 $table->decimal('price',10,2);
                 $table->decimal('discount',10,2);
+                $table->enum('size',['M','L','XL']);
                 $table->timestamps();
             });
         }

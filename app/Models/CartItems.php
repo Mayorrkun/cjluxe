@@ -13,5 +13,14 @@ class CartItems extends Model
         'quantity',
         'price',
         'discount',
+        'size'
     ];
+
+    public function carts(){
+       return $this->belongsTo(Carts::class);
+    }
+
+    public function product(){
+       return $this->belongsTo(Products::class, 'product_id');
+    }
 }

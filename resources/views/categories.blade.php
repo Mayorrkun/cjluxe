@@ -18,7 +18,9 @@
                     @endphp
                 <div class="my-[20px]">
                     <h1 style="font-family: MTNBrighterSans-Medium" class="{{$align}} italics leading-[35px] font-[600] text-[25px] border-b-[3px] border-b-gray-500">{{$category->category_name}}</h1>
-
+                    @foreach($category->products as $product)
+                        {{$product->product_name}}
+                    @endforeach
                 </div>
 
             @endforeach

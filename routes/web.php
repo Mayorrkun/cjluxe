@@ -6,13 +6,18 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Main\GeneralController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Cart\CartController;
 //MiddleWares
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\GuestMiddleware;
 use App\Http\Middleware\AuthMiddleware;
 
+//general routes
 Route::get('/', [GeneralController::class, 'index'])->name('home');
+Route::get('/contact', [GeneralController::class, 'contact'])->name('contact');
 
+//admin routes
 Route::get('/admin/home', function () {
     return view('Admin.home');
 });
@@ -30,6 +35,10 @@ Route::get('logout',[AuthenticatedSessionController::class, 'destroy'])->middlew
 //categories page
 Route::get('/categories',[GeneralController::class, 'categoryIndex'])->name('categories.index');
 
+//product routes
+Route::get('/product/{id}',[ProductController::class, 'index'])->name('product.index');
 
-
+//cart routes
+Route::post('/add-to-cart/{product}',[CartController::class, 'store'])->name('cart.store');
+Route::get('/remove-item/{cartItem}',[CartController::class,'remove'])->name('cart.remove');
 require __DIR__.'/auth.php';

@@ -36,8 +36,8 @@
             <x-error name="password"></x-error>
 
             <label style="font-family: MTNBrighterSans-Light" class="block text-[14px] leading-[18px] self-start text-white mt-[20px] mb-[5px]" for="">Confirm Password</label>
-            <input name="password_confirmed" id="passwordInput" class="block bg-transparent border-white rounded-full text-[#ffffff] border text-[18px] md:w-[500px]" type="password" placeholder="Password">
-            <x-error name="password_confirmed"></x-error>
+            <input name="password_confirmation" id="passwordInput" class="block bg-transparent border-white rounded-full text-[#ffffff] border text-[18px] md:w-[500px]" type="password" placeholder="Password">
+            <x-error name="password_confirmation"></x-error>
 
             <input type="submit" value="Register" class=" mt-[20px] bg-[#ffffff] text-[20px] md:w-[500px] rounded-full" style="font-family: MTNBrighterSans-Medium">
             {{--        Log into Account--}}

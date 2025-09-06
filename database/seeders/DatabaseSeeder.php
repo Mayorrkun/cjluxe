@@ -28,5 +28,7 @@ class DatabaseSeeder extends Seeder
         $test_user->assignRole('admin');
 
         $this->call(CategorySeeder::class);
+
+        $this->call(ProductSeeder::class);
     }
 }

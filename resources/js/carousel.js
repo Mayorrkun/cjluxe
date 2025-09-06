@@ -4,12 +4,15 @@ import {animate} from "animejs";
 
 document.addEventListener('DOMContentLoaded', () => {
  if(window.location.pathname === '/'){
-
      const swiper = new Swiper('.swiper', {
          direction: 'horizontal',
-         loop: false,
+         loop: true,
          slidesPerView: 1,
-         speed: 500,
+         speed: 1000,
+         autoplay: {
+             pauseOnMouseEnter:true,
+             delay: 3000
+         },
 
          pagination: {
              el: '.swiper-pagination',
@@ -37,6 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
              }
          }
      })
-
  }
+
+ const paths = ['/', '/categories'];
+    if(paths.includes(window.location.pathname)){
+        console.log('it works');
+        const carousel = new Swiper('.swiper-infinite',{
+            direction: "horizontal",
+            slidesPerView:6,
+            autoplay: {
+            }
+        })
+    }
 })
