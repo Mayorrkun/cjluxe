@@ -22,9 +22,10 @@
                 <span style="font-family: SSTBold" class="text-right text-[30px] px-[30px] block">&#8358;{{ number_format($product->price)}}</span>
             @endif
 
-            <p class="py-[50px] min-h-[200px] w-full">
+            <p class="py-[50px] min-h-[150px] w-full">
                 {{$product->description}}
             </p>
+            <span style="font-family: MTNBrighterSans-Medium" class="w-full flex text-[15px]">  <a class="ml-auto gap-[10px] flex" href=""> Wishlist <i class=" text-[25px] text-pink-400 fa fa-heart"></i></a> </span>
             <div class="flex my-[20px]">
                 <span class="text-[20px] items-center" style="font-family: MTNBrighterSans-Medium">Quantity:</span>
                 <p class="w-auto flex gap-[5px] ml-auto">
