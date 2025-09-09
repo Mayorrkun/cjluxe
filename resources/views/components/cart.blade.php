@@ -11,7 +11,7 @@
     <!-- Cart Content -->
     <div class="space-y-2 overflow-y-auto">
         {{$slot}}
-        <button style="font-family: MTNBrighterSans-Medium" class="mt-auto w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+        <button onclick="window.location.href ='{{route('order.index')}}'" style="font-family: MTNBrighterSans-Medium" class="mt-auto w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
             Checkout
         </button>
     </div>

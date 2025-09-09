@@ -23,6 +23,13 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('password'),
         ]
         );
+        User::create([
+                'first_name' => 'Mayokun',
+                'last_name' => 'Testing',
+                'email' => 'mayokun@user.com',
+                'password' => Hash::make('password'),
+            ]
+        );
 
         $test_user = User::where('email', 'mayokun@test.com')->first();
         $test_user->assignRole('admin');

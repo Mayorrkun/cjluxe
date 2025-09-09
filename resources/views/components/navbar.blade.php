@@ -34,10 +34,9 @@ $total = 0;
 
             </i>
         </button>
-           @if(Auth::check())
-               @if(Auth::user()->carts && Auth::user()->carts->cartitems->isNotEmpty())
+               @if($cart && $cart->cartitems->isNotEmpty())
                    <x-cart>
-                       @foreach(Auth::user()->carts->cartitems as $cartItem)
+                       @foreach($cart->cartitems as $cartItem)
                            @php
                            $total = $total + ($cartItem->price * $cartItem->quantity)
                            @endphp
@@ -52,12 +51,10 @@ $total = 0;
                                </a>
                            </div>
                        @endforeach
-
+                       <div class="flex "> <a href="{{route('cart.clear',$cart->id)}}" class="ml-auto text-white bg-red-600 py-[10px] px-[15px] rounded-md " style="font-family: MTNBrighterSans-Medium"> Clear Cart </a></div>
                        <p style="font-family: MTNBrighterSans-Medium" class="text-[20px] flex">Total: <span class="ml-auto"> &#8358;{{number_format($total)}}</span></p>
                    </x-cart>
                @endif
-
-           @endif
 
     </div>
 </nav>

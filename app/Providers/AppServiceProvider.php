@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('layouts.navbar', function ($view) {
+        View::composer('components.navbar', function ($view) {
             $products = Products::paginate(10); // or whatever you need
             $cart = null;
             if (Auth::check()) {

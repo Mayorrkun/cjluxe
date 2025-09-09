@@ -8,6 +8,7 @@ use App\Http\Controllers\Main\GeneralController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Cart\CartController;
+use App\Http\Controllers\Order\OrderController;
 //MiddleWares
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\GuestMiddleware;
@@ -41,4 +42,10 @@ Route::get('/product/{id}',[ProductController::class, 'index'])->name('product.i
 //cart routes
 Route::post('/add-to-cart/{product}',[CartController::class, 'store'])->name('cart.store');
 Route::get('/remove-item/{cartItem}',[CartController::class,'remove'])->name('cart.remove');
+Route::get('/cart/clear/{cart}',[CartController::class, 'destroy'])->name('cart.clear');
+//wishlist routes
+Route::get('/wishlist',[\App\Http\Controllers\Wishlist\WishListController::class, 'index'])->middleware(AuthMiddleware::class)->name('wishlist.index');
+
+//order routes
+Route::get('/checkout',[OrderController::class, 'index'])->middleware(AuthMiddleware::class)->name('order.index');
 require __DIR__.'/auth.php';
