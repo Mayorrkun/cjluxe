@@ -11,7 +11,8 @@ class Carts extends Model
     protected $fillable =[
         'user_id',
         'session_id',
-        'status'
+        'status',
+        'guest_token'
     ];
 
     public function user(){

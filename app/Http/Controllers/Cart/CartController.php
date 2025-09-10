@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
@@ -39,33 +40,36 @@ class CartController extends Controller
         }
 
         else {
-            //Guest lol
-            $session_id = Session::id();
-            Session(['guest_cart_session_id' => $session_id]);
-            $cart = Carts::firstOrCreate([
-               'user_id' => null,
-               'session_id' => $session_id
-            ]);
-            $cart_item = CartItems::where(['product_id'=>$product->id,'size' => $size])->first();
-            if($cart_item){
-                $cart_item->update([
-                    'quantity' =>  $cart_item->quantity + $validated['quantity'],
-                ]);
-                return redirect()->back()->with('success', 'product added to cart');
-            }
-            else{
-            CartItems::create([
-                    'cart_id'   => $cart->id,
+            $guestToken = Session::get('guest_token'); // middleware guarantees this exists
+
+            // ✅ always reuse the same guest cart
+            $cart = Carts::firstOrCreate(
+                ['guest_token' => $guestToken, 'status' => 'active'],
+                ['user_id' => null, 'session_id' => Session::getId(),'guest_token' => $guestToken]
+            );
+
+            // ✅ make sure to check cart_id too
+            $cart_item = CartItems::where([
+                'cart_id'   => $cart->id,
+                'product_id'=> $product->id,
+                'size'      => $size,
+            ])->first();
+
+            if ($cart_item) {
+                $cart_item->increment('quantity', $validated['quantity']);
+            } else {
+                $cart->cartItems()->create([
                     'product_id'=> $product->id,
                     'quantity'  => $validated['quantity'],
                     'size'      => $size,
                     'price'     => $product->price,
                     'discount'  => $product->discount,
                 ]);
-
-                return redirect()->back()->with('success', 'product added to cart');
             }
+
+            return redirect()->back()->with('success', 'product added to cart');
         }
+
     }
 
     public function remove(CartItems $cartItem){

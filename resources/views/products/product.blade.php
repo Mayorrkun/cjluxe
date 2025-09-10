@@ -14,7 +14,7 @@
                 @endforeach
             </div>
         </div>
-        <form method="POST" action="{{route('cart.store',$product->id)}}" class="w-1/2 bg-white h-full p-[50px] ">
+        <form method="POST" action="{{route('cart.store',$product->id)}}" class="w-1/2 bg-white h-full p-[50px] rounded-lg shadow-xl ">
             @csrf
             <h1 style="font-family: MTNBrighterSans-Medium"  class="block active-a text-left text-[25px] leading-[30px] uppercase">{{$product->product_name}}</h1>
             @if($product->discount !== 0)

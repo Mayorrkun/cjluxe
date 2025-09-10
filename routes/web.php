@@ -13,6 +13,7 @@ use App\Http\Controllers\Order\OrderController;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\GuestMiddleware;
 use App\Http\Middleware\AuthMiddleware;
+use App\Http\Middleware\EnsureGuestToken;
 
 //general routes
 Route::get('/', [GeneralController::class, 'index'])->name('home');
@@ -40,7 +41,7 @@ Route::get('/categories',[GeneralController::class, 'categoryIndex'])->name('cat
 Route::get('/product/{id}',[ProductController::class, 'index'])->name('product.index');
 
 //cart routes
-Route::post('/add-to-cart/{product}',[CartController::class, 'store'])->name('cart.store');
+Route::post('/add-to-cart/{product}',[CartController::class, 'store'])->name('cart.store')->middleware(EnsureGuestToken::class);
 Route::get('/remove-item/{cartItem}',[CartController::class,'remove'])->name('cart.remove');
 Route::get('/cart/clear/{cart}',[CartController::class, 'destroy'])->name('cart.clear');
 //wishlist routes

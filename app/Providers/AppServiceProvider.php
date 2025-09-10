@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
                     ->first();
             }
             else{
+
                 $cart = Carts::where('session_id',Session::id())
                     ->with('cartItems.product')
                     ->first();

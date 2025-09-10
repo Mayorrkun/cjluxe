@@ -29,51 +29,54 @@ class MergeCart
         logger('MergeCart fired');
 
         $user = $event->user;
-        $session = Session('guest_cart_session_id');
 
+        //Guest token from session
+        $guest_token = Session::get('guest_token');
+
+        if(!$guest_token){
+            return;
+        }
         //check if a session(guest) cart exists
-        $cart = Carts::where('session_id', $session)
-            ->whereNull('user_id')
+        $guest_cart = Carts::where('guest_token', $guest_token)
+            ->where('status', 'active')
+            ->with('cartitems')
             ->first();
 
+        if(!$guest_cart){
+            logger('No Guest cart fired');
+            return;
+        }
+        // find user cart
 
-        if($cart){
-            logger('Guest cart found: '.$cart->id);
-            // if user already has a cart merge items
+        $user_cart = Carts::firstOrCreate(
+            ['user_id' => $user->id, 'status' => 'active'],
+            ['session_id' => null, 'guest_token' => null]
+        );
+        logger('user cart found');
+        //The Reunion
+        foreach($guest_cart->cartitems as $guest_item){
+            logger('The reunion');
 
-            $existing_cart = Carts::where('user_id', $user->id)
-                ->where('status', 'active')
+            $existing_item = $user->carts->cartitems
+                ->where('cart_id', $user_cart->id)
+                ->where('product_id', $guest_item->product_id)
+                ->where('size', $guest_item->size)
                 ->first();
 
-            if($existing_cart){
-                foreach($cart->cartitems as $item){
-                    $existing_item = $existing_cart->cartitems
-                        ->where('product_id', $item->product_id)
-                        ->first();
-
-                    if($existing_item){
-                        $existing_item->quantity = $existing_item->quantity + $item->quantity;
-                    }
-                    else{
-                        CartItems::create([
-                            'cart_id' => $existing_cart->id,
-                            'product_id' => $item->product_id,
-                            'quantity'   => $item->quantity,
-                            'price'      => $item->price,   // snapshot price
-                            'total'      => $item->quantity * $item->price,
-                        ]);
-                    }
-                }
-                // delete guest cart after the REUNION, it's not death it's a homecoming
-                $cart->delete();
+            if($existing_item){
+                logger('quantity updated');
+                $existing_item->increment('quantity', $guest_item->quantity);
             }
             else{
-                // just make a new cart bro lol
-                $cart->update([
-                    'session_id' => null,
-                    'user_id' => $user->id,
-                ]);
+                logger('The reunion fired');
+               $guest_item->update([
+                   'cart_id' => $user_cart->id,
+               ]);
             }
         }
+
+        //cleanup
+        $guest_cart->delete();
+        Session::forget('guest_token');
     }
 }
