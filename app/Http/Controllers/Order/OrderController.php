@@ -15,7 +15,7 @@ class OrderController extends Controller
             ->where('status', 'active')
             ->first();
         if($user_cart->cartitems->isNotEmpty()){
-            return view('order.checkout',['cart' => $user_cart]);
+            return view('orders.checkout',['cart' => $user_cart]);
         }
         else{
             return back()->with('failure','cart is empty');
