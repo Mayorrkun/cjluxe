@@ -64,3 +64,45 @@
     font-weight: normal;
     font-style: italic;
 }
+@font-face {
+    font-family: 'SSTMedium' ;
+    src: url('/resources/fonts/sst/SSTMedium.ttf') format('truetype'),
+    url('/resources/fonts/sst/SSTMedium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'SSTMediumCn' ;
+    src: url('/resources/fonts/sst/SSTMediumCn.ttf') format('truetype'),
+    url('/resources/fonts/sst/SSTMediumCn.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'SSTMediumIt' ;
+    src: url('/resources/fonts/sst/SSTMediumIt.ttf') format('truetype'),
+    url('/resources/fonts/sst/SSTMediumIt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'SSTRg' ;
+    src: url('/resources/fonts/sst/SSTRg.ttf') format('truetype'),
+    url('/resources/fonts/sst/SSTRg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'SSTRgIt' ;
+    src: url('/resources/fonts/sst/SSTRgIt.ttf') format('truetype'),
+    url('/resources/fonts/sst/SSTRgIt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'SSTRgCn' ;
+    src: url('/resources/fonts/sst/SSTRgCn.ttf') format('truetype'),
+    url('/resources/fonts/sst/SSTRgCn.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}

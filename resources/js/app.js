@@ -3,6 +3,7 @@ import './navbar.js';
 import './carousel.js';
 import './effects.js';
 import './product.js';
+import './orders.js';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;

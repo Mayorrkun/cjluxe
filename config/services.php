@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    // other services
+    'paystack' => [
+        'secret' => env('PAYSTACK_SECRET_KEY'),
+        'public_key' => env('PAYSTACK_PUBLIC_KEY'),
+        'callback' => env('PAYSTACK_CALLBACK_URL'),
+        'base_url' => 'https://api.paystack.co', //official paystack base url
+    ]
+
 ];

@@ -48,5 +48,7 @@ Route::get('/cart/clear/{cart}',[CartController::class, 'destroy'])->name('cart.
 Route::get('/wishlist',[\App\Http\Controllers\Wishlist\WishListController::class, 'index'])->middleware(AuthMiddleware::class)->name('wishlist.index');
 
 //order routes
-Route::get('/checkout',[OrderController::class, 'index'])->middleware(AuthMiddleware::class)->name('order.index');
+Route::get('/checkout-page',[OrderController::class, 'index'])->middleware(AuthMiddleware::class)->name('order.index');
+Route::post('/checkout/paystack/redirect',[OrderController::class, 'store'])->middleware(AuthMiddleware::class)->name('order.checkout');
+Route::get('/checkout/paystack/callback', [OrderController::class, 'handleCallback'])->middleware(AuthMiddleware::class)->name('order.callback');
 require __DIR__.'/auth.php';
