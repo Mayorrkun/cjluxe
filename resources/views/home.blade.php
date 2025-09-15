@@ -47,10 +47,8 @@
                 @php
                 $encrypted = Crypt::encrypt($product->id)
                 @endphp
-                <a class=" px-[20px] w-[200px] border-transparent border-[3px] border-r-blue-200 border-b-blue-100" href="{{route('product.index',['id' => $encrypted])}}">
+                <a class=" px-[20px] w-[200px] pb-[10px] border-transparent border-[3px] border-r-blue-200 border-b-blue-100" href="{{route('product.index',['id' => $encrypted])}}">
                     <span class="w-full max-h-[260px] "><img src="{{url($product->images->first()->img_src)}}" alt=""></span>
-
-                    <h1 style="font-family: SSTBold" class="text-[16px] text-center">{{$product->product_name}}</h1>
                 </a>
             @endforeach
         </div>

@@ -12,10 +12,15 @@ class OrderItems extends Model
       'product_id',
       'quantity',
       'price',
-      'discount'
+      'discount',
+        'size'
     ];
 
     public function orders(){
-        return $this->belongsTo(Orders::class);
+        return $this->belongsTo(Orders::class, 'order_id');
+    }
+
+    public function product(){
+        return $this->belongsTo(Products::class, 'product_id');
     }
 }

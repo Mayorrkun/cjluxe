@@ -6,9 +6,10 @@
     <title>Document</title>
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-gray-100">
+<body class="min-h-screen flex-col flex bg-gray-100 ">
+<main>
     {{$slot}}
-
+</main>
 <x-footer></x-footer>
 </body>
 </html>

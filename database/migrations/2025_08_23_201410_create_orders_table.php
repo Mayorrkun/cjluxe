@@ -14,10 +14,12 @@ return new class extends Migration
         if(!Schema::hasTable('orders')){
             Schema::create('orders', function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('user_id')->constrained('user');
+                $table->foreignId('user_id')->constrained('users');
                 $table->string('reference')->nullable();
-                $table->enum('status',['pending','processing','completed','cancelled'])->default('pending');
+                $table->string('recipient')->nullable();
+                $table->enum('status',['pending','paid','completed','cancelled','failed'])->default('pending');
                 $table->string('address');
+                $table->integer('phone');
                 $table->string('city');
                 $table->string('state');
                 $table->decimal('total',10, 2);
@@ -34,8 +36,10 @@ return new class extends Migration
                     ->constrained('products')
                     ->onDelete('cascade');
                 $table->integer('quantity');
+                $table->enum('size',['M','L','XL']);
                 $table->decimal('price');
                 $table->decimal('discount',10,2);
+                $table->timestamps();
 
 
             });

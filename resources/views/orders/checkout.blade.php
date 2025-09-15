@@ -5,6 +5,7 @@
  @endphp
 <x-layout>
     <x-navbar></x-navbar>
+    <x-error name="error"></x-error>
     <section class="px-[50px]">
 <div class="mb-[20px] py-[20px] flex gap-[50px] w-full">
     <table style="font-family: MTNBrighterSans-Medium"

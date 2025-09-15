@@ -10,14 +10,16 @@ class Orders extends Model
     protected $fillable =[
         'user_id',
         'reference',
+        'recipient',
+        'phone',
         'status',
         'address',
         'city',
         'state',
         'total'
     ];
-    public function orderItems(){
-        return $this->hasmany(OrderItems::class);
+    public function orderitems(){
+        return $this->hasMany(OrderItems::class, 'order_id');
     }
     public function user(){
         return $this->belongsTo(User::class);
