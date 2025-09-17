@@ -8,6 +8,7 @@
 </head>
 <body class="min-h-screen flex-col flex bg-gray-100 ">
 <main>
+  <x-navbar></x-navbar>
     {{$slot}}
 </main>
 <x-footer></x-footer>

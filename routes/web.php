@@ -18,6 +18,7 @@ use App\Http\Middleware\EnsureGuestToken;
 //general routes
 Route::get('/', [GeneralController::class, 'index'])->name('home');
 Route::get('/contact', [GeneralController::class, 'contact'])->name('contact');
+Route::get('/search', [ProductController::class, 'search'])->name('products.search');
 
 //admin routes
 Route::get('/admin/home', function () {

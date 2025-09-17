@@ -13,7 +13,7 @@ class GeneralController extends Controller
     //
     public function index()
     {
-        $products = Products::paginate();
+        $products = Products::paginate(8);
 
         if (Auth::check()) {
             if (Auth::user()->hasRole('admin')) {
@@ -36,7 +36,7 @@ class GeneralController extends Controller
 
 
     public function categoryIndex(){
-        $categories = Category::paginate(5);
+        $categories = Category::paginate(1);
         return view('categories', ['categories' => $categories]);
     }
 

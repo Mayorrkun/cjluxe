@@ -1,6 +1,5 @@
 @props(['orders'])
 <x-layout>
-    <x-navbar> </x-navbar>
 @if($orders->isEmpty())
     <section>
         You havent made any orders
