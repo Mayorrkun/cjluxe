@@ -113,6 +113,30 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const userBar = document.getElementById('userBar');
+    const mobileProfileBtn = document.getElementById('mobile-profile-btn');
 
+    mobileProfileBtn.addEventListener('click',function (){
+        if(userBar.classList.contains('-translate-x-full')){
+            animate(userBar, {
+                translateX:{to:0},
+                opacity:{from:0, to:1},
+                duration:300,
+                ease:'inOut'
+            })
+            userBar.classList.remove('-translate-x-full');
+        }
+        else{
+            animate(userBar, {
+                translateX:{to:'-100%'},
+                opacity:{from:1, to:0},
+                duration:300,
+                ease:'inOut'
+            })
+            userBar.classList.add('-translate-x-full');
+        }
+    });
+})
 //scroll checks
 

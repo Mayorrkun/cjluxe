@@ -35,15 +35,11 @@
                 </div>
             </div>
         </div>
-
-        <!-- Swiper navigation -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
     </section>
 
     <!-- Product Grid -->
     <section class="py-[30px] md:py-[50px] px-[20px] md:px-[50px]">
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-[20px] md:gap-[50px] justify-items-center">
+        <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-[20px] md:gap-[50px] justify-items-center">
             @foreach($products as $product)
                 @php
                     $encrypted = Crypt::encrypt($product->id)
@@ -56,5 +52,6 @@
                 </a>
             @endforeach
         </div>
+        {{$products->links('vendor.pagination.products')}}
     </section>
 </x-layout>

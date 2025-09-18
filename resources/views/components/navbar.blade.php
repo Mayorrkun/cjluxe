@@ -102,15 +102,15 @@ else {
         <img src="{{ url('images/logo/logo.png') }}" alt="" class="h-[50px]">
     </a>
 
-    <button id="dropdown-btn" class="flex items-center">
+    <button id="dropdown-btn" class="absolute left-1/2 transform -translate-x-1/2 flex items-center">
         <i class="fa fa-shopping-bag logo inline-flex w-auto">CJluxury</i>
         <i id="arrow" class="fa fa-chevron-down"></i>
     </button>
 
-    <div class="flex ">
+    <div class="flex gap-[10px] ">
         @if(Auth::check())
             <div class="flex gap-[20px] max-h-[50px]">
-                <button id="profile-btn" class="hover:shadow-2xl transition-all duration-100 ease-in-out border-[1px] border-gray-300 rounded-md px-[2px]"><i class="fa fa-user"></i></button>
+                <button id="mobile-profile-btn" class="hover:shadow-2xl transition-all duration-100 ease-in-out border-[1px] border-gray-300 text-[20px] rounded-md px-[2px]"><i class="fa fa-user"></i></button>
             </div>
         @endif
         <button id="mobile-cart-btn" class="items-center flex-row flex">
@@ -118,6 +118,7 @@ else {
             <span class="text-black">{{ $count }}</span>
         </button>
     </div>
+    <x-userbar></x-userbar>
     @if($cart && $cart->cartitems->isNotEmpty())
         <x-mobilecart :cart="$cart"></x-mobilecart>
     @endif
@@ -132,6 +133,11 @@ else {
         <li class="block w-full my-[10px] shadow-sm">
             <a href="{{ route('contact') }}" class="w-full h-full py-[5px] px-[20px] text-[18px]">Contact</a>
         </li>
+        @if(!Auth::check())
+            <li class="flex w-full my-[10px] shadow-sm">
+                <a href="{{ route('login.page') }}" class="w-full h-full bg-blue-500 text-white py-[5px] px-[20px] text-[18px] text-center">Sign in</a>
+            </li>
+        @endif
 
         {{-- Search --}}
         <li class="w-full my-[5px]">
@@ -181,4 +187,5 @@ else {
             </form>
         </li>
     </ul>
+
 </nav>

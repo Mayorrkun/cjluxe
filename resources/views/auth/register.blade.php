@@ -18,7 +18,7 @@
     <section class="md:w-1/2 w-full mr-auto bg-black min-h-screen bg-opacity-85 md:bg-opacity-90 py-[30px] px-[20px] sm:px-[40px] flex justify-center">
         <form action="{{route('register')}}" method="POST" class="items-center flex flex-col w-full max-w-[500px]">
             @csrf
-            <h1 class="text-white text-[22px] sm:text-[26px] text-center sign-in-header font-[400] mb-[20px]">Register</h1>
+            <h1 class="text-white text-[22px] sm:text-[26px] text-center w-full sign-in-header font-[400] mb-[20px]">Register</h1>
 
             {{-- First Name --}}
             <label class="block text-[14px] leading-[18px] self-start text-white mt-[15px] mb-[5px]" style="font-family: MTNBrighterSans-Light">First Name</label>

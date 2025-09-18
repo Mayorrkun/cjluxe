@@ -6,10 +6,10 @@
     <title>Admin|CjLuxury</title>
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
-<body>
+<body class="bg-gray-200 w-full h-[100vh]">
 <x-admin.navbar> </x-admin.navbar>
 <x-admin.sidenav> </x-admin.sidenav>
-<main class="content">
+<main class="md:ml-[252px] bg-white h-full">
     {{$slot}}
 </main>
 

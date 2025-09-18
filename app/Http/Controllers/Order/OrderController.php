@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Carts;
 use App\Models\OrderItems;
 use App\Models\Orders;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -131,6 +132,10 @@ class OrderController extends Controller
         }
 
         $order->update(['status' => 'paid']);
+        foreach ($cart->cartitems as $cartitems){
+           $product =  Products::where('id', $cartitems->product_id)->first();
+           $product->update(['quantity' =>$product->quantity - $cartitems->quantity]);
+        }
         $cart->delete();
 
         return redirect()->route('order.main')->with('success', 'Payment was Successful');

@@ -8,12 +8,21 @@ use App\Models\Category;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Jenssegers\Agent\Agent;
 class GeneralController extends Controller
 {
     //
     public function index()
     {
-        $products = Products::paginate(8);
+        $products = Products::all();
+        $agent = new Agent();
+        if($agent->isMobile()){
+            $products = Products::where('sold_out',0)->inRandomOrder()->paginate(6);
+        }
+        elseif ($agent->isDesktop()){
+            $products = Products::where('sold_out',0)->inRandomOrder()->paginate(8);
+        }
+
 
         if (Auth::check()) {
             if (Auth::user()->hasRole('admin')) {
