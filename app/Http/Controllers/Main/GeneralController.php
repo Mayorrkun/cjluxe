@@ -26,7 +26,7 @@ class GeneralController extends Controller
 
         if (Auth::check()) {
             if (Auth::user()->hasRole('admin')) {
-                return view('Admin.home', ['products' => $products]);
+                return redirect()->route('admin.home');
             }
 
             $cart = Carts::where('user_id', Auth::id())->first();
@@ -43,7 +43,10 @@ class GeneralController extends Controller
         ]);
     }
 
+    public function adminIndex(){
 
+        return view('Admin.home');
+    }
     public function categoryIndex(){
         $categories = Category::paginate(1);
         return view('categories', ['categories' => $categories]);

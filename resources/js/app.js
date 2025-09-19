@@ -4,6 +4,7 @@ import './carousel.js';
 import './effects.js';
 import './product.js';
 import './orders.js';
+import './admin.js';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;

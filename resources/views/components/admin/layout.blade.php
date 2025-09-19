@@ -9,7 +9,7 @@
 <body class="bg-gray-200 w-full h-[100vh]">
 <x-admin.navbar> </x-admin.navbar>
 <x-admin.sidenav> </x-admin.sidenav>
-<main class="md:ml-[252px] bg-white h-full">
+<main class="md:ml-[252px] md:pt-[50px] bg-white md:h-full px-[50px]">
     {{$slot}}
 </main>
 

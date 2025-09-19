@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
      })
  }
 
+
  const paths = ['/', '/categories'];
     if(paths.includes(window.location.pathname)){
         console.log('it works');
@@ -53,3 +54,19 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 })
+
+document.addEventListener('DOMContentLoaded', () => {
+   if(window.location.pathname.startsWith('/admin')){
+
+       const marquee = new Swiper('.swiper-Marquee',{
+           loop: true,
+           allowTouchMove: true,
+           slidesPerView:"5",
+           speed:4000,
+           autoplay:{
+               delay:0,
+               disableOnInteraction:false
+           },
+       });
+   }
+});

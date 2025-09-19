@@ -21,9 +21,7 @@ Route::get('/contact', [GeneralController::class, 'contact'])->name('contact');
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
 
 //admin routes
-Route::get('/admin/home', function () {
-    return view('Admin.home');
-});
+Route::get('/admin/home',[GeneralController::class, 'adminIndex'])->name('admin.home');
 
 //Log in Routes
 Route::get('/login-page',[AuthenticatedSessionController::class, 'create'])->middleware(GuestMiddleware::class)->name('login.page');
