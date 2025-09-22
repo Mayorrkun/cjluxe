@@ -9,7 +9,7 @@
         <li class="border-t-gray-200 shadow-md border-t w-full" id="products-list">
             <button id="products-btn" class="w-full flex items-center pl-[50px] pr-[10px] text-[20px] font-[500]">Products <i id="drop-i-admin" class="fa fa-chevron-down text-[12px] ml-auto"></i></button>
             <div id="product-dropdown" class=" max-h-0 overflow-hidden transition-all duration-500 ease-in-out flex flex-col text-[15px] py-[10px]" style="max-height: 0;">
-                <a href="" class="py-[5px] border-y border-y-gray-200 w-full bg-blue-400 text-center text-white">View Products</a>
+                <a href="{{route('admin.products')}}" class="py-[5px] border-y border-y-gray-200 w-full bg-blue-400 text-center text-white">View Products</a>
                 <a href="" class="py-[5px] border-y border-y-gray-200 w-full bg-blue-400 text-center text-white">Create New Product</a>
             </div>
         </li>

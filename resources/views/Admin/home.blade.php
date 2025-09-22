@@ -1,6 +1,6 @@
 @props(['products', 'orders', 'users'])
 <x-admin.layout>
-    <h1 class="block w-full text-right text-[20px] text-gray-500" style="font-family: MTNBrighterSans-Regular">Welcome Back {{Auth::user()->first_name}}</h1>
+
 <section class="px-[50px]" style="font-family: MTNBrighterSans-Regular">
 {{--    best sellers--}}
     <div>
@@ -11,12 +11,12 @@
                     <p class="text-blue-500 w-full text-center mt-[50px] text-lg font-bold">Nothing yet sorry ...</p>
                 @else
                     @foreach($products->where('quantity', '<', 100) as $product)
-                        <div class="swiper-slide h-[100px] rounded-md shadow-xl p-[10px]">
+                        <a href="{{route('admin.product',['product'=>$product->id])}}" class="swiper-slide h-[100px] rounded-md shadow-xl p-[10px]">
                     <span class="w-full">
                          <img src="{{url($product->images->first()->img_src)}}" alt="" class="h-full">
                     </span>
 
-                        </div>
+                        </a>
                     @endforeach
                 @endif
 
@@ -36,10 +36,16 @@
                     <p class="text-blue-500 w-full text-center mt-[50px] text-lg font-bold">No orders made yet ...</p>
                 @else
                     @foreach($orders as $order)
-                        <a class="swiper-slide h-[100px] rounded-md shadow-xl p-[10px]">
-                    <span class="w-full">
-                         testing
-                    </span>
+                        <a class="swiper-slide h-[100px] w-[100px] rounded-md shadow-xl p-[10px]">
+                    <div class="w-full">
+                        <h3 class="block text-right font-[500]">{{$order->recipient}}</h3>
+                        <p class="w-full">
+                            <span class="block text-red-600 text-sm">Status:{{$order->status}}</span>
+                            <span class="block">Items Quantity:{{$order->orderitems()->count()}}</span>
+
+                            <span class="block font-[600] mt-[30px]">Total: {{$order->total}}</span>
+                        </p>
+                    </div>
 
                         </a>
                     @endforeach

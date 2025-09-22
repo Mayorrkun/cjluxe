@@ -41,13 +41,22 @@ class OrderController extends Controller
             'city' => 'required|max:100',
             'state' => 'required|max:100|in:Lagos,Ogun,Oyo',
         ]);
+        $delivery = $validated['state'];
         $cart = Auth::user()->carts()->first();
         $total = 0;
         foreach($cart->cartitems as $cartItem){
 
             $total += $cartItem->price * $cartItem->quantity;
         }
-
+        if($delivery === 'Lagos'){
+            $total += 5000;
+        }
+        elseif($delivery === 'Ogun'){
+            $total += 5000;
+        }
+        elseif($delivery === 'Oyo'){
+            $total += 5000;
+        }
 
 
         //create order in with a state of pending

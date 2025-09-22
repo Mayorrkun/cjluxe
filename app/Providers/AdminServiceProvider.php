@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\Products;
 use App\Models\Orders;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\View;
 
 class AdminServiceProvider extends ServiceProvider
@@ -28,11 +29,13 @@ class AdminServiceProvider extends ServiceProvider
             $products = Products::all();
             $orders   = Orders::all();
             $users    = User::role('user')->get();
+            $categories = Category::all();
 
             $view->with([
                 'products' => $products,
                 'orders'   => $orders,
                 'users'    => $users,
+                'categories' => $categories
             ]);
         });
 

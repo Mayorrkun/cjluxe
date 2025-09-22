@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Cart\CartController;
 use App\Http\Controllers\Order\OrderController;
+use App\Http\Controllers\Admin\AdminController;
 //MiddleWares
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\GuestMiddleware;
@@ -22,7 +23,8 @@ Route::get('/search', [ProductController::class, 'search'])->name('products.sear
 
 //admin routes
 Route::get('/admin/home',[GeneralController::class, 'adminIndex'])->name('admin.home');
-
+Route::get('/admin/products',[AdminController::class,'products'])->name('admin.products');
+Route::get('/admin/products/{product}',[AdminController::class,'product'])->name('admin.product');
 //Log in Routes
 Route::get('/login-page',[AuthenticatedSessionController::class, 'create'])->middleware(GuestMiddleware::class)->name('login.page');
 Route::get('/login',[AuthenticatedSessionController::class, 'store'])->middleware(GuestMiddleware::class)->name('login');
