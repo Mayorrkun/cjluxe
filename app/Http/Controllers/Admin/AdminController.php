@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\ProductImages;
 use App\Models\Products;
 use Illuminate\Http\Request;
 
@@ -16,4 +18,45 @@ class AdminController extends Controller
 
         return view('Admin.product.product',['product'=>$product]);
     }
+
+    public function create(){
+        return view('Admin.product.create');
+    }
+
+    public function store(Request $request){
+        $validated = $request->validate([
+            'product_name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'quantity' => 'required|integer|',
+            'category' =>'required|string',
+            'images.*' => 'required|image|mimes:png,jpg|max:1024'
+        ]);
+
+        //create product
+        $category = Category::where('category_name',$validated['category'])->first();
+
+        $product = Products::create([
+            'product_name' => $validated['product_name'],
+            'description' => $validated['description'],
+            'quantity' => $validated['quantity'],
+            'price' => $validated['price'],
+            'discount' => 0,
+            'category_id' => $category->id,
+            'sold_out' => false
+        ]);
+        // images
+        if($request->hasFile('images')){
+            foreach($request->file('images') as $image){
+                $path = $image->store('products','public');
+
+                ProductImages::create([
+                    'product_id' => $product->id,
+                    'img_src' => 'storage/'. $path,
+                ]);
+            }
+        }
+        return redirect()->route('admin.product',['product' => $product->id]);
+    }
+
 }

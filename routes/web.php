@@ -25,6 +25,8 @@ Route::get('/search', [ProductController::class, 'search'])->name('products.sear
 Route::get('/admin/home',[GeneralController::class, 'adminIndex'])->name('admin.home');
 Route::get('/admin/products',[AdminController::class,'products'])->name('admin.products');
 Route::get('/admin/products/{product}',[AdminController::class,'product'])->name('admin.product');
+Route::get('/admin/products/create/index',[AdminController::class,'create'])->name('admin.create.page');
+Route::post('/admin/products/create/product',[AdminController::class,'store'])->name('admin.products.store');
 //Log in Routes
 Route::get('/login-page',[AuthenticatedSessionController::class, 'create'])->middleware(GuestMiddleware::class)->name('login.page');
 Route::get('/login',[AuthenticatedSessionController::class, 'store'])->middleware(GuestMiddleware::class)->name('login');

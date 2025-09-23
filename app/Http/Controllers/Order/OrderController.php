@@ -144,6 +144,9 @@ class OrderController extends Controller
         foreach ($cart->cartitems as $cartitems){
            $product =  Products::where('id', $cartitems->product_id)->first();
            $product->update(['quantity' =>$product->quantity - $cartitems->quantity]);
+           if($product->quantity < 1){
+               $product->update(['sold_out' => true]);
+           }
         }
         $cart->delete();
 

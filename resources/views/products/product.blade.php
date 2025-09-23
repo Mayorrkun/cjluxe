@@ -1,6 +1,6 @@
 @props(['product'])
 <x-layout>
-    <section class="lg:py-[50px] lg:min-h-[500px] min-h-screen lg:px-[50px] flex lg:flex-row flex-col gap-[20px]">
+    <section class="lg:py-[50px] lg:min-h-[500px] min-h-screen lg:px-[50px] flex lg:flex-row flex-col gap-[20px]" style="font-family: MTNBrighterSans-Regular">
         <!-- Left: Product Images -->
         <div class="lg:w-[50%] w-full h-full px-[10px] lg:px-[20px] shadow-md">
             <span class="w-full flex justify-center">
@@ -37,38 +37,45 @@
             <p class="py-[30px] sm:py-[50px] min-h-[120px] sm:min-h-[150px] w-full text-[14px] sm:text-[16px]">
                 {{$product->description}}
             </p>
-
-            <!-- Quantity Selector -->
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between my-[20px] gap-[10px]">
-                <span class="text-[16px] sm:text-[20px]" style="font-family: MTNBrighterSans-Medium">Quantity:</span>
-                <p class="w-auto flex gap-[5px]">
-                    <button id="add-quan" class="w-[35px] sm:w-[40px] text-white bg-blue-400" type="button">
-                        <i class="fa fa-plus"></i>
-                    </button>
-                    <input id="quan" name="quantity" class="w-[50px] text-center border border-gray-300" type="number" value="1">
-                    <button id="sub-quan" class="w-[35px] sm:w-[40px] text-white bg-blue-400" type="button">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                </p>
-            </div>
-            <x-error name="quantity"></x-error>
-
-            <!-- Sizes -->
-            <div class="flex flex-wrap gap-[15px] sm:gap-[30px]">
-                @foreach([['id'=>'M', 'title' => 'Medium'], ['id'=>'L', 'title' => 'Large'], ['id'=>'XL', 'title' => 'Extra-Large']] as $size)
-                    <span class="flex items-center gap-[5px] text-[14px] sm:text-[16px]" style="font-family: MTNBrighterSans-Medium">
+            @if($product->quantity !== 0 && $product->sold_out !== false)
+                <!-- Quantity Selector -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between my-[20px] gap-[10px]">
+                    <span class="text-[16px] sm:text-[20px]" style="font-family: MTNBrighterSans-Medium">Quantity:</span>
+                    <p class="w-auto flex gap-[5px]">
+                        <button id="add-quan" class="w-[35px] sm:w-[40px] text-white bg-blue-400" type="button">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                        <input id="quan" name="quantity" class="w-[50px] text-center border border-gray-300" type="number" value="1">
+                        <button id="sub-quan" class="w-[35px] sm:w-[40px] text-white bg-blue-400" type="button">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </p>
+                </div>
+                <x-error name="quantity"></x-error>
+                {{--            //quantity checker--}}
+                @if($product->quantity <= 10)
+                    <span class="text-sm text-red-600 block text-right my-[20px] font-[700]">There Are {{$product->quantity}} units of this item remaining </span>
+                @endif
+                <!-- Sizes -->
+                <div class="flex flex-wrap gap-[15px] sm:gap-[30px]">
+                    @foreach([['id'=>'M', 'title' => 'Medium'], ['id'=>'L', 'title' => 'Large'], ['id'=>'XL', 'title' => 'Extra-Large']] as $size)
+                        <span class="flex items-center gap-[5px] text-[14px] sm:text-[16px]" style="font-family: MTNBrighterSans-Medium">
                         <label>{{$size['title']}}</label>
                         <input type="radio" name="size" value="{{$size['id']}}">
                     </span>
-                @endforeach
-            </div>
-            <x-error name="size"></x-error>
+                    @endforeach
+                </div>
+                <x-error name="size"></x-error>
 
-            <!-- Add to Cart Button -->
-            <input class="w-full cursor-pointer py-[10px] sm:py-[12px] mt-[20px] text-white text-[16px] sm:text-[18px] bg-blue-400 font-bold rounded-md"
-                   value="Add To Cart"
-                   style="font-family: MTNBrighterSans-Medium"
-                   type="submit">
+                <!-- Add to Cart Button -->
+                <input class="w-full cursor-pointer py-[10px] sm:py-[12px] mt-[20px] text-white text-[16px] sm:text-[18px] bg-blue-400 font-bold rounded-md"
+                       value="Add To Cart"
+                       style="font-family: MTNBrighterSans-Medium"
+                       type="submit">
+            @else
+                <h1 class="text-[22px] font-bold border-b border-blue-600 mb-[20px] text-center">This Product is Sold Out</h1>
+            @endif
+
         </form>
     </section>
 </x-layout>
