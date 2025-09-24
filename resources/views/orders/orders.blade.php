@@ -7,11 +7,21 @@
     @else
         <section class="h-auto md:h-[500px] overflow-y-auto px-4 md:px-[50px] py-4">
             @foreach($orders as $order)
+                @php
+                    $delivery = '';
+                    if($order->is_delivered === 0){
+                        $delivery = 'Not Delivered';
+                    }
+                    else{
+                        $delivery = 'Delivered';
+                    }
+                @endphp
                 <div class="w-full my-4 shadow-xl p-4 bg-white text-[14px] rounded-md" style="font-family: MTNBrighterSans-Regular">
                     <!-- Order Info -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6 text-sm md:text-base">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-2 text-sm md:text-base">
                         <span class="font-medium">Status: <span class="text-blue-700">{{$order->status}}</span></span>
                         <span>Date: {{$order->created_at}}</span>
+                        <span>Delivery Status: {{$delivery}}</span>
                         <span>Total: &#8358;{{number_format($order->total)}}</span>
                     </div>
 

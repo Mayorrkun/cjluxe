@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Orders;
 use App\Models\ProductImages;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -17,6 +18,19 @@ class AdminController extends Controller
     public function product(Products $product){
 
         return view('Admin.product.product',['product'=>$product]);
+    }
+    public function orders(){
+        return view('Admin.orders.orders');
+    }
+
+    public function order(Orders $order){
+        return view('Admin.orders.order',['order' => $order]);
+    }
+    public function delivered(Products $products){
+
+        $products->update([
+            'is_Delivered' => true
+        ]);
     }
 
     public function create(){

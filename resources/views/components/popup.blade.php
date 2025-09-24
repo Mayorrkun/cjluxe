@@ -10,7 +10,7 @@
         x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 translate-y-2"
 
-        class="fixed top-5 right-5 z-[200] w-[90%] max-w-sm "
+        class="fixed top-5 right-5 z-[250] w-[90%] max-w-sm "
     >
         <div
             class="rounded-2xl shadow-lg px-6 py-4 text-white"

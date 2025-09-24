@@ -20,7 +20,7 @@
         <!-- Right: Product Details -->
         <div class="w-full px-[50px]" style="font-family: MTNBrighterSans-Regular">
             <h1 class="block border-b border-b-blue-600 text-[20px] font-[600] text-center">{{$product->product_name}}</h1>
-            <form class="w-full py-[20px]">
+            <form class="w-full py-[20px]" method="POST" action="{{route('admin.product.edit',['product' => $product->id])}}">
                 @csrf
                 <p class="my-[10px]">
                     <span class="block">Product Description</span>
@@ -29,15 +29,15 @@
                 </p>
                 <p>
                     <span class="flex justify-between">
-                        <label>Quanity:</label> <input type="number" value="{{$product->quantity}}" class="w-[70px]">
+                        <label>Quanity:</label> <input name="quantity" type="number" value="{{$product->quantity}}" class="w-[70px]">
                     </span>
                     <span class="flex justify-between">
-                        <label>Price:</label> <input type="number" value="{{$product->price}}" class="w-[90px]">
+                        <label>Price:</label> <input name="price" type="number" value="{{$product->price}}" class="w-[90px]">
                     </span>
                 </p>
 
                 <p class="flex w-full justify-between gap-[40px]">
-                    <a href="" class=" text-[16px] w-full text-center py-[5px] text-white bg-red-600 rounded-md shadow-md">Delete Item</a>
+                    <a href="{{route('admin.product.delete',['product' => $product->id])}}" class=" text-[16px] w-full text-center py-[5px] text-white bg-red-600 rounded-md shadow-md">Delete Item</a>
                     <button class=" text-[16px] w-full text-center py-[5px] text-white bg-blue-600 rounded-md shadow-md">Edit Item</button>
                 </p>
             </form>

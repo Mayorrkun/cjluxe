@@ -16,7 +16,8 @@ class Orders extends Model
         'address',
         'city',
         'state',
-        'total'
+        'total',
+        'is_delivered'
     ];
     public function orderitems(){
         return $this->hasMany(OrderItems::class, 'order_id');

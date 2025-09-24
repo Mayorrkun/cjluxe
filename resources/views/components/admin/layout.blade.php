@@ -7,6 +7,7 @@
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body class="bg-gray-200 w-full min-h-[100vh]">
+<x-popup></x-popup>
 <x-admin.navbar> </x-admin.navbar>
 <x-admin.sidenav> </x-admin.sidenav>
 <main class="md:ml-[252px] md:pt-[50px] bg-white md:min-h-screen x-[50px]">

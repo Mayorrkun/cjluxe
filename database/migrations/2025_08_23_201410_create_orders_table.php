@@ -23,6 +23,7 @@ return new class extends Migration
                 $table->string('city');
                 $table->string('state');
                 $table->decimal('total',10, 2);
+                $table->boolean('is_delivered')->default(false);
                 $table->timestamps();
             });
         }

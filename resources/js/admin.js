@@ -1,5 +1,6 @@
 import {animate} from "animejs";
-
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.startsWith('/admin')) {
         const productsBtn = document.getElementById('products-btn');
@@ -23,5 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             }
         });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    if(window.location.pathname.startsWith('/admin')){
+        const ItemSwiper = new Swiper('.swiper-OrderItems',{
+            loop: false,
+            allowTouchMove: true,
+            slidesPerView:2,
+
+
+        })
     }
 });

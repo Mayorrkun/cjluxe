@@ -12,7 +12,7 @@
                 @else
                     @foreach($products->where('quantity', '<', 100) as $product)
                         <a href="{{route('admin.product',['product'=>$product->id])}}" class="swiper-slide h-[100px] rounded-md shadow-xl p-[10px]">
-                    <span class="w-full">
+                    <span class="w-full flex items-center">
                          <img src="{{url($product->images->first()->img_src)}}" alt="" class="h-full">
                     </span>
 
@@ -36,7 +36,7 @@
                     <p class="text-blue-500 w-full text-center mt-[50px] text-lg font-bold">No orders made yet ...</p>
                 @else
                     @foreach($orders as $order)
-                        <a class="swiper-slide h-[100px] w-[100px] rounded-md shadow-xl p-[10px]">
+                        <a href="{{route('admin.order', ['order' => $order->id])}}" class="swiper-slide h-[100px] w-[100px] rounded-md shadow-xl p-[10px]">
                     <div class="w-full">
                         <h3 class="block text-right font-[500]">{{$order->recipient}}</h3>
                         <p class="w-full">

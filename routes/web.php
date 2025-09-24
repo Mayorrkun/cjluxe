@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Cart\CartController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\MiscController;
 //MiddleWares
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\GuestMiddleware;
@@ -27,6 +28,10 @@ Route::get('/admin/products',[AdminController::class,'products'])->name('admin.p
 Route::get('/admin/products/{product}',[AdminController::class,'product'])->name('admin.product');
 Route::get('/admin/products/create/index',[AdminController::class,'create'])->name('admin.create.page');
 Route::post('/admin/products/create/product',[AdminController::class,'store'])->name('admin.products.store');
+Route::get('/admin/orders',[AdminController::class,'orders'])->name('admin.orders');
+Route::get('/admin/orders/{order}',[AdminController::class,'order'])->name('admin.order');
+Route::get('/admin/product/delete/{product}',[MiscController::class,'delItem'])->name('admin.product.delete');
+Route::post('/admin/product/edit/{product}',[MiscController::class,'editItem'])->name('admin.product.edit');
 //Log in Routes
 Route::get('/login-page',[AuthenticatedSessionController::class, 'create'])->middleware(GuestMiddleware::class)->name('login.page');
 Route::get('/login',[AuthenticatedSessionController::class, 'store'])->middleware(GuestMiddleware::class)->name('login');
