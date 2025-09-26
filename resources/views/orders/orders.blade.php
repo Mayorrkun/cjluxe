@@ -27,14 +27,23 @@
 
                     <!-- Order Details -->
                     <h1 class="text-[18px] md:text-[20px] border-b font-[600] my-3">Order Details</h1>
-                    <div class="flex flex-row w-full px-2 py-2 gap-4 overflow-x-auto">
-                        @foreach($order->orderitems as $items)
-                            <div class="min-w-[80px] md:w-[100px] border-transparent border border-r-blue-500 border-b-blue-500 shadow-lg rounded-md overflow-hidden">
-                                <img class="w-full h-[80px] md:h-[100px] object-contain"
-                                     src="{{url($items->product->images->first()->img_src)}}"
-                                     alt="">
-                            </div>
-                        @endforeach
+                    <div class="flex flex-row w-full px-2 py-2 gap-4 overflow-x-auto items-center">
+                        <div class="flex flex-row w-full gap-4 overflow-x-auto">
+                            @foreach($order->orderitems as $items)
+                                <div class="min-w-[80px] md:w-[100px] border-transparent border border-r-blue-500 border-b-blue-500 shadow-lg rounded-md overflow-hidden">
+                                    <img class="w-full h-[80px] md:h-[100px] object-contain"
+                                         src="{{url($items->product->images->first()->img_src)}}"
+                                         alt="">
+                                </div>
+                            @endforeach
+                        </div>
+
+
+                            <a href="{{ route('orders.receipt', $order->id) }}"
+                               class="px-3 py-2 flex flex-shrink-0 items-center bg-blue-600 text-white ml-auto rounded">
+                                Print Receipt
+                            </a>
+
                     </div>
                 </div>
             @endforeach

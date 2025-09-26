@@ -56,7 +56,7 @@
         <div class=" grid grid-cols-2 leading-[40px] ">
             @if($order->is_delivered === 0)
                 <h1>Change Status to Delivered</h1>
-                <a href="" class="font-bold text-white bg-green-500 text-center rounded-lg shadow-sm">Delivered</a>
+                <a href="{{route('admin.order.delivered',['order' => $order->id])}}" class="font-bold text-white bg-green-500 text-center rounded-lg shadow-sm">Delivered</a>
             @endif
 
         </div>

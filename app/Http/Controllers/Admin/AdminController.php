@@ -26,11 +26,19 @@ class AdminController extends Controller
     public function order(Orders $order){
         return view('Admin.orders.order',['order' => $order]);
     }
-    public function delivered(Products $products){
+    public function delivered(Orders $order){
+        if($order->is_delivered === 0){
+            $order->update([
+                'is_delivered' => 1
+            ]);
+            return back()->with('success', 'marked as delivered');
+        }
 
-        $products->update([
-            'is_Delivered' => true
-        ]);
+        else{
+            return back()->with('failure', 'Already Delivered');
+        }
+
+
     }
 
     public function create(){

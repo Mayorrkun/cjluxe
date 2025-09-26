@@ -10,7 +10,9 @@ use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderReceiptMail;
 class OrderController extends Controller
 {
     //
@@ -28,7 +30,7 @@ class OrderController extends Controller
     }
 
     public function userOrders(){
-        $orders = Auth::user()->orders()->get();
+        $orders = Auth::user()->orders()->orderBy('created_at', 'DESC')->get();
 
         return view('orders.orders',['orders' => $orders]);
     }
@@ -148,8 +150,16 @@ class OrderController extends Controller
                $product->update(['sold_out' => true]);
            }
         }
+        Mail::to(Auth::user()->email)->send(new OrderReceiptMail($order));
         $cart->delete();
 
+
         return redirect()->route('order.main')->with('success', 'Payment was Successful');
+    }
+
+    public function receipt(Orders $order)
+    {
+        $pdf = Pdf::loadView('orders.receipt', compact('order'));
+        return $pdf->download('receipt-'.$order->reference.'.pdf');
     }
 }

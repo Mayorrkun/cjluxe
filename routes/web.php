@@ -32,6 +32,7 @@ Route::get('/admin/orders',[AdminController::class,'orders'])->name('admin.order
 Route::get('/admin/orders/{order}',[AdminController::class,'order'])->name('admin.order');
 Route::get('/admin/product/delete/{product}',[MiscController::class,'delItem'])->name('admin.product.delete');
 Route::post('/admin/product/edit/{product}',[MiscController::class,'editItem'])->name('admin.product.edit');
+Route::get('/admin/orders/delivered/{order}',[AdminController::class,'delivered'])->name('admin.order.delivered');
 //Log in Routes
 Route::get('/login-page',[AuthenticatedSessionController::class, 'create'])->middleware(GuestMiddleware::class)->name('login.page');
 Route::get('/login',[AuthenticatedSessionController::class, 'store'])->middleware(GuestMiddleware::class)->name('login');
@@ -60,4 +61,5 @@ Route::get('/orders',[OrderController::class, 'userOrders'])->middleware(AuthMid
 Route::get('/checkout-page',[OrderController::class, 'index'])->middleware(AuthMiddleware::class)->name('order.index');
 Route::post('/checkout/paystack/redirect',[OrderController::class, 'store'])->middleware(AuthMiddleware::class)->name('order.checkout');
 Route::get('/paystack/callback', [OrderController::class, 'handleCallback'])->middleware(AuthMiddleware::class)->name('order.callback');
+Route::get('/orders/{order}/receipt', [OrderController::class, 'receipt'])->name('orders.receipt');
 require __DIR__.'/auth.php';
