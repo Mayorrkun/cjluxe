@@ -18,22 +18,13 @@ class CategorySeeder extends Seeder
             'category_name'=>'T-shirts'
         ]);
         Category::create([
-            'category_name'=>'Sweaters'
-        ]);
-        Category::create([
-            'category_name'=>'Hoodies'
+            'category_name'=>'Accessories'
         ]);
         Category::create([
             'category_name'=>'Shorts'
         ]);
         Category::create([
             'category_name'=>'Sets'
-        ]);
-        Category::create([
-            'category_name'=>'Turtle Necks'
-        ]);
-        Category::create([
-            'category_name'=>'Button-down Shirts'
         ]);
     }
 }

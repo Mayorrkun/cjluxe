@@ -22,7 +22,7 @@ class ShirtSeeder extends Seeder
         Products::create([
             'product_name' => 'Hopes and Dreams',
             'description' => 'Hopes and Dreams T-shirt(Black), Made of cotton.',
-            'quantity' => 100,
+            'quantity' => 30,
             'price' => 30000,
             'discount' => 0,
             'category_id' => Category::where('category_name', 'T-shirts')->first()->id,
@@ -37,7 +37,7 @@ class ShirtSeeder extends Seeder
         Products::create([
             'product_name' => 'Hopes and Dreams',
             'description' => 'Hopes and Dreams T-shirt(White), Made of cotton.',
-            'quantity' => 100,
+            'quantity' => 30,
             'price' => 30000,
             'discount' => 0,
             'category_id' => Category::where('category_name', 'T-shirts')->first()->id,
@@ -52,7 +52,7 @@ class ShirtSeeder extends Seeder
         Products::create([
             'product_name' => 'Stoned',
             'description' => 'Stoned T-shirt(Black), Made of cotton.',
-            'quantity' => 100,
+            'quantity' => 30,
             'price' => 30000,
             'discount' => 0,
             'category_id' => Category::where('category_name', 'T-shirts')->first()->id,
@@ -68,7 +68,7 @@ class ShirtSeeder extends Seeder
         Products::create([
             'product_name' => 'Stoned',
             'description' => 'Stoned T-shirt(White), Made of cotton.',
-            'quantity' => 100,
+            'quantity' => 30,
             'price' => 30000,
             'discount' => 0,
             'category_id' => Category::where('category_name', 'T-shirts')->first()->id,
@@ -84,7 +84,7 @@ class ShirtSeeder extends Seeder
         Products::create([
             'product_name' => 'Lavish',
             'description' => 'Lavish T-shirt(Black), Made of cotton.',
-            'quantity' => 100,
+            'quantity' => 30,
             'price' => 30000,
             'discount' => 0,
             'category_id' => Category::where('category_name', 'T-shirts')->first()->id,
@@ -99,7 +99,7 @@ class ShirtSeeder extends Seeder
         Products::create([
             'product_name' => 'Lavish',
             'description' => 'Lavish T-shirt(White), Made of cotton.',
-            'quantity' => 100,
+            'quantity' => 30,
             'price' => 30000,
             'discount' => 0,
             'category_id' => Category::where('category_name', 'T-shirts')->first()->id,
@@ -115,7 +115,7 @@ class ShirtSeeder extends Seeder
         Products::create([
             'product_name' => 'Active CL',
             'description' => 'Active CL T-shirt(White), Made of cotton.',
-            'quantity' => 100,
+            'quantity' => 30,
             'price' => 30000,
             'discount' => 0,
             'category_id' => Category::where('category_name', 'T-shirts')->first()->id,
@@ -134,7 +134,7 @@ class ShirtSeeder extends Seeder
         Products::create([
             'product_name' => 'No Evil',
             'description' => 'No Evil T-shirt(Black), Made of cotton.',
-            'quantity' => 100,
+            'quantity' => 30,
             'price' => 30000,
             'discount' => 0,
             'category_id' => Category::where('category_name', 'T-shirts')->first()->id,
@@ -149,7 +149,7 @@ class ShirtSeeder extends Seeder
         Products::create([
             'product_name' => 'No Evil',
             'description' => 'No Evil T-shirt(White), Made of cotton.',
-            'quantity' => 100,
+            'quantity' => 30,
             'price' => 30000,
             'discount' => 0,
             'category_id' => Category::where('category_name', 'T-shirts')->first()->id,
@@ -165,7 +165,7 @@ class ShirtSeeder extends Seeder
         Products::create([
             'product_name' => 'Rachnid',
             'description' => 'Rachnid T-shirt(Black), Made of cotton.',
-            'quantity' => 100,
+            'quantity' => 30,
             'price' => 30000,
             'discount' => 0,
             'category_id' => Category::where('category_name', 'T-shirts')->first()->id,
@@ -180,7 +180,7 @@ class ShirtSeeder extends Seeder
         Products::create([
             'product_name' => 'Rachnid',
             'description' => 'Rachnid T-shirt(White), Made of cotton.',
-            'quantity' => 100,
+            'quantity' => 30,
             'price' => 30000,
             'discount' => 0,
             'category_id' => Category::where('category_name', 'T-shirts')->first()->id,
@@ -195,7 +195,7 @@ class ShirtSeeder extends Seeder
         Products::create([
             'product_name' => 'Keep Grinding',
             'description' => 'Keep Grinding T-shirt(White), Made of cotton.',
-            'quantity' => 100,
+            'quantity' => 30,
             'price' => 30000,
             'discount' => 0,
             'category_id' => Category::where('category_name', 'T-shirts')->first()->id,

@@ -24,7 +24,7 @@
             <a href="{{ route('admin.products') }}" class="w-full h-full py-[5px] px-[20px] text-[18px]">View Products</a>
         </li>
         <li class="block w-full my-[10px] shadow-sm">
-            <a href="{{ route('contact') }}" class="w-full h-full py-[5px] px-[20px] text-[18px]">View Orders</a>
+            <a href="{{ route('admin.orders') }}" class="w-full h-full py-[5px] px-[20px] text-[18px]">View Orders</a>
         </li>
         @if(!Auth::check())
             <li class="flex w-full my-[10px] shadow-sm">

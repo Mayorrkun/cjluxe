@@ -1,5 +1,7 @@
-<footer class=" py-[10px] bg-[#6495ed] mt-auto justify-end md:gap-[50px] w-full text-white">
-<span class="w-full block border-t-white border-transparent border-[1px] text-white text-right text-[14x] leading-[20px] mt-auto">
-    &copy; Ceejay Luxury
-</span>
+<footer class="w-full bg-[#6495ed] py-4 mt-auto text-white">
+    <div class="container mx-auto px-4">
+    <span class="block w-full border-t border-white/50 pt-2 text-sm text-center leading-5 md:text-right">
+      &copy; Ceejay Luxury
+    </span>
+    </div>
 </footer>

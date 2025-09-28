@@ -35,5 +35,7 @@ class ProductSeeder extends Seeder
 //        ]);
 
         $this->call(ShirtSeeder::class);
+        $this->call(ShortSeeder::class);
+        $this->call(AccessorySeeder::class);
     }
 }

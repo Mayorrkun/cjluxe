@@ -4,7 +4,7 @@
             <span style="font-family: MTNBrighterSans-Regular" class="text-gray-500 italic inline-block text-right w-full text-[12px]">{{Auth::user()->email}}</span>
         </p>
         @if(Auth::user()->hasRole('admin'))
-            <a href="{{route('order.main')}}" style="font-family: MTNBrighterSans-Medium" class="w-full block text-[20px] shadow-md text-blue-500 text-center my-[10px]">Create New Product</a>
+            <a href="{{route('admin.create.page')}}" style="font-family: MTNBrighterSans-Medium" class="w-full block text-[20px] shadow-md text-blue-500 text-center my-[10px]">Create New Product</a>
         @else
             <a href="{{route('order.main')}}" style="font-family: MTNBrighterSans-Medium" class="w-full block text-[20px] shadow-md text-blue-500 text-center my-[10px]">Your Orders</a>
         @endif

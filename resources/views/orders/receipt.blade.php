@@ -1,4 +1,5 @@
 @props(['order'])
+
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,6 +101,13 @@
         <p><strong>Date:</strong> {{ $order->created_at->format('d M Y, h:i A') }}</p>
         <p><strong>Customer:</strong> {{ $order->recipient }}</p>
         <p><strong>Email:</strong> {{ $order->user->email }}</p>
+        <p><strong>Payment Status:</strong>{{$order->status}}</p>
+        @if($order->is_delivered === 0)
+            <p><strong>Delivery Status:</strong>Not Delivered</p>
+
+        @else
+            <p><strong>Delivery Status:</strong>Delivered</p>
+        @endif
     </div>
 
     <!-- Order Items -->
@@ -115,10 +123,32 @@
         </thead>
         <tbody>
         @foreach($order->orderitems as $item)
+            @php
+                $image = $item->product->images->first();
+                $imagePath = $image?->img_src;
+
+                // Default placeholder
+                $finalImagePath = public_path('images/placeholder.png');
+
+                if ($imagePath) {
+                    // If stored via storage/app/public
+                    if (str_starts_with($imagePath, 'storage/')) {
+                        $finalImagePath = public_path($imagePath);
+                    }
+                    // If stored directly in public/images
+                    elseif (file_exists(public_path('images/' . $imagePath))) {
+                        $finalImagePath = public_path('images/' . $imagePath);
+                    }
+                    // If already an absolute path (rare case)
+                    elseif (file_exists(public_path($imagePath))) {
+                        $finalImagePath = public_path($imagePath);
+                    }
+                }
+            @endphp
             <tr>
                 <td>
-                    <img src="{{ public_path($item->product->images->first()->img_src) }}" class="product-img" alt="">
-                    {{ $item->product->product_name }}
+                    <img src="{{ $finalImagePath }}" class="product-img" alt="" style="max-height:60px; max-width:60px;">
+                    {{ $item->product?->product_name ?? 'Unknown Product' }}
                 </td>
                 <td>{{ $item->quantity }}</td>
                 <td>{{ $item->size }}</td>
