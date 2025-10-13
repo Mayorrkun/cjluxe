@@ -35,7 +35,10 @@ class AdminController extends Controller
         }
 
         else{
-            return back()->with('failure', 'Already Delivered');
+            $order->update([
+                'is_delivered' => 0
+            ]);
+            return back()->with('failure', 'marked as not delivered');
         }
 
 

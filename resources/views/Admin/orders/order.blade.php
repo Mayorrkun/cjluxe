@@ -1,4 +1,4 @@
-```blade
+
 @props(['order'])
 @php
     $delivery = $order->is_delivered === 0 ? 'Not Delivered' : 'Delivered';
@@ -42,6 +42,9 @@
                     {{ $delivery }}
                 </span>
 
+                <span class="font-medium">Total</span>
+                <span class="text-right">{{ number_format($order->total)}}</span>
+
                 <span class="font-medium">Date</span>
                 <span class="text-right">{{ $order->created_at->format('M d, Y H:i') }}</span>
             </div>
@@ -57,8 +60,13 @@
                    class="px-4 py-2 font-bold text-white bg-green-500 hover:bg-green-600 transition rounded-lg shadow-sm">
                     Mark as Delivered
                 </a>
+            @else
+                <h1 class="text-sm font-medium">Change Status to Not Delivered</h1>
+                <a href="{{ route('admin.order.delivered', ['order' => $order->id]) }}"
+                   class="px-4 py-2 font-bold text-white bg-red-500 hover:bg-red-600 transition rounded-lg shadow-sm">
+                    Mark as Not Delivered
+                </a>
             @endif
         </div>
     </section>
 </x-admin.layout>
-```

@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    <nav role="navigation" aria-label="Products Pagination" class="flex justify-center mt-6 space-x-1">
+    <nav role="navigation" aria-label="Products Pagination" class="flex gap-[20px] justify-center mt-6 space-x-1" style="font-family: MTNBrighterSans-Regular">
 
         {{-- Previous --}}
         @if ($paginator->onFirstPage())

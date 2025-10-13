@@ -32,11 +32,11 @@
                     </h1>
 
                     <!-- Product Grid -->
-                    <div class="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 gap-y-[20px] md:gap-y-[30px] justify-items-center w-full text-center"
+                    <div class="grid grid-cols-3 gap-x-[20px] sm:grid-cols-3 lg:grid-cols-4 gap-y-[20px] md:gap-y-[30px] justify-items-center w-full text-center"
                          style="font-family: MTNBrighterSans-Regular">
                         @foreach($products as $product)
                             <a href="{{route('product.index',['id' => Crypt::encrypt($product->id)])}}"
-                               class="w-[120px] sm:w-[140px] md:w-[150px] shadow-md">
+                               class="w-[100px] sm:w-[140px] md:w-[150px]">
                                 <img class="w-full h-auto object-contain"
                                      src="{{url($product->images->first()->img_src)}}" alt="">
                             </a>
