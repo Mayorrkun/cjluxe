@@ -98,7 +98,7 @@ else {
 
 {{-- mobile --}}
 <nav id="mobile-nav" class="md:hidden sticky top-0 flex py-[5px] bg-white justify-between items-center z-[150]">
-    <a class="max-h-[50px] flex">
+    <a class="max-h-[50px] flex" href="{{route('home')}}">
         <img src="{{ url('images/logo/logo.png') }}" alt="" class="h-[50px]">
     </a>
 

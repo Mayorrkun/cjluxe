@@ -150,7 +150,7 @@ class OrderController extends Controller
                $product->update(['sold_out' => true]);
            }
         }
-        Mail::to(Auth()->user()->email)->send(new OrderReceiptMail($order));
+      //  Mail::to(Auth()->user()->email)->send(new OrderReceiptMail($order));
         $cart->delete();
 
 
