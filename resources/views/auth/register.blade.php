@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Register | CjLuxury</title>
+    <link rel="icon" href="{{url('images/logo/logo-white.png')}}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>

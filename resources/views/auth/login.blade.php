@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign In | CjLuxury</title>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="icon" href="{{url('images/logo/logo-white.png')}}">
 </head>
 <body class="bg-cover" style="background-image: url('images/media/loginbg.jpg')">
 <!-- Navbar -->
@@ -23,7 +25,7 @@
             @csrf
 
             <!-- Heading -->
-            <h1 class="text-white text-[22px] sm:text-[26px] sign-in-header font-[400] mb-[30px] text-center sm:text-left">
+            <h1 class="text-white text-[22px] sm:text-[26px] sign-in-header font-[400] mb-[30px] text-center">
                 Sign In
             </h1>
 
@@ -58,13 +60,13 @@
 
             <!-- Forgot password -->
             <a href="#"
-               class="text-right w-full text-white text-[14px] sm:text-[16px] hover:text-blue-700 mt-[20px]">
+               class="text-right w-full text-white text-[14px] sm:text-[16px] hover:text-blue-700 mt-[20px]" style="font-family: MTNBrighterSans-Regular">
                 Forgot Password?
             </a>
 
             <!-- Register -->
             <a href="{{route('register.page')}}"
-               class="text-left w-full text-white text-[14px] sm:text-[16px] hover:text-blue-700 mt-[15px]">
+               class="text-left w-full text-white text-[14px] sm:text-[16px] hover:text-blue-700 mt-[15px]" style="font-family: MTNBrighterSans-Regular">
                 Don’t have an account? Register Now
             </a>
         </form>

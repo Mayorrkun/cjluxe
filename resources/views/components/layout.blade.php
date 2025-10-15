@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>CjLuxury | Luxury clothing brand and store</title>
+    <link rel="icon" href="{{url('images/logo/logo-white.png')}}">
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body class="min-h-screen flex-col flex bg-gray-50 ">
