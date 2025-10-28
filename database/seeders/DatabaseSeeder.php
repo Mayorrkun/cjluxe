@@ -17,21 +17,14 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
 
         User::create([
-                'first_name' => 'Mayokun',
-                'last_name' => 'Testing',
-                'email' => 'mayokun@test.com',
-                'password' => Hash::make('password'),
+                'first_name' => 'Ezekiel',
+                'last_name' => '',
+                'email' => 'ceejaylavish@gmail.com',
+                'password' => Hash::make('securePass01'),
         ]
         );
-        User::create([
-                'first_name' => 'Mayokun',
-                'last_name' => 'Testing',
-                'email' => 'mayokun@user.com',
-                'password' => Hash::make('password'),
-            ]
-        );
 
-        $test_user = User::where('email', 'mayokun@test.com')->first();
+        $test_user = User::where('email', 'ceejaylavish@gmail.com')->first();
         $test_user->assignRole('admin');
 
         $this->call(CategorySeeder::class);
