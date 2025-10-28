@@ -58,7 +58,7 @@ else {
 
                <!-- Search button (fallback full search) -->
                <button type="submit"
-                       class="border border-gray-300 hover:text-blue-400 rounded-r-md px-3">
+                       class="border border-gray-300 hover:text-blue-400 rounded-r-md px-3" disabled>
                    <i class="fa fa-search"></i>
                </button>
 
@@ -167,7 +167,7 @@ else {
                        placeholder="Search..."
                        class="w-full h-[40px] border px-2 rounded-l-md focus:outline-none">
 
-                <button type="submit" class="bg-blue-500 text-white w-auto px-[10px] h-[40px] rounded-r-md">
+                <button type="button" class="bg-blue-500 text-white w-auto px-[10px] h-[40px] rounded-r-md" disabled>
                     <i class="fa fa-search"></i>
                 </button>
 
