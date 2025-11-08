@@ -7,6 +7,7 @@ use App\Models\Carts;
 use App\Models\OrderItems;
 use App\Models\Orders;
 use App\Models\Products;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -34,8 +35,9 @@ class OrderController extends Controller
 
         return view('orders.orders',['orders' => $orders]);
     }
-    public function store(Request $request){
-        //initial segment
+    public function store(Request $request)
+    {
+        // Validate incoming request
         $validated = $request->validate([
             'recipient' => 'required|max:100',
             'phone' => 'required|max:100',
@@ -43,37 +45,110 @@ class OrderController extends Controller
             'city' => 'required|max:100',
             'state' => 'required|max:100|in:Lagos,Ogun,Oyo',
         ]);
+
         $delivery = $validated['state'];
         $cart = Auth::user()->carts()->first();
-        $total = 0;
-        foreach($cart->cartitems as $cartItem){
 
+        if (!$cart || $cart->cartitems->isEmpty()) {
+            return back()->with('error', 'Your cart is empty.');
+        }
+
+        // Calculate total
+        $total = 0;
+        foreach ($cart->cartitems as $cartItem) {
             $total += $cartItem->price * $cartItem->quantity;
         }
-        if($delivery === 'Lagos'){
-            $total += 5000;
-        }
-        elseif($delivery === 'Ogun'){
-            $total += 5000;
-        }
-        elseif($delivery === 'Oyo'){
-            $total += 5000;
+
+        // Add flat delivery charge
+        $total += 5000;
+
+        $reference = 'ORD-' . uniqid();
+
+        // Initialize Paystack transaction
+        $response = Http::withToken(config('services.paystack.secret'))
+            ->post(config('services.paystack.base_url') . '/transaction/initialize', [
+                'email' => Auth::user()->email,
+                'amount' => $total * 100, // in kobo
+                'reference' => $reference,
+                'callback_url' => config('services.paystack.callback'),
+                'metadata' => [
+                    'recipient' => $validated['recipient'],
+                    'phone' => $validated['phone'],
+                    'address' => $validated['address'],
+                    'city' => $validated['city'],
+                    'state' => $validated['state'],
+                    'total' => $total,
+                    'cart_id' => $cart->id,
+                    'user_id' => Auth::id(),
+                ]
+            ]);
+
+        \Log::info('Paystack initialize response', $response->json());
+
+        if ($response->failed() || !isset($response['data']['authorization_url'])) {
+            return back()->with('error', 'Unable to initiate payment.');
         }
 
+        $body = $response->json();
 
-        //create order in with a state of pending
+        if (!data_get($body, 'data.authorization_url')) {
+            return back()->with('error', 'Payment gateway error.');
+        }
+
+        // Redirect user to Paystack payment page
+        return redirect()->away($body['data']['authorization_url']);
+    }
+
+
+    public function handleCallback(Request $request)
+    {
+        $reference = $request->query('reference');
+
+        // Verify payment with Paystack
+        $verify_response = Http::withToken(config('services.paystack.secret'))
+            ->get(config('services.paystack.base_url') . '/transaction/verify/' . $reference);
+
+        if ($verify_response->failed()) {
+            return redirect()->route('order.index')->with('error', 'Unable to verify payment.');
+        }
+
+        $body = $verify_response->json();
+        $status = data_get($body, 'data.status');
+
+        if ($status !== 'success') {
+            return redirect()->route('order.index')->with('error', 'Payment was not successful.');
+        }
+
+        // Extract metadata (we use this to recreate the order)
+        $metadata = data_get($body, 'data.metadata');
+
+        // Ensure metadata exists
+        if (!$metadata || !isset($metadata['cart_id'])) {
+            return redirect()->route('order.index')->with('error', 'Invalid transaction data.');
+        }
+
+        $user = User::find($metadata['user_id']);
+        $cart = $user->carts()->where('id', $metadata['cart_id'])->first();
+
+        if (!$cart) {
+            return redirect()->route('order.index')->with('error', 'Cart not found.');
+        }
+
+        // Create order now that payment succeeded
         $order = Orders::create([
-            'user_id' => Auth::id(),
-            'recipient' => $validated['recipient'],
-            'total' => $total,
-            'status' => 'pending',
-            'address' => $validated['address'],
-            'city' => $validated['city'],
-            'state' => $validated['state'],
-            'phone' => $validated['phone'],
+            'user_id' => $user->id,
+            'recipient' => $metadata['recipient'],
+            'phone' => $metadata['phone'],
+            'address' => $metadata['address'],
+            'city' => $metadata['city'],
+            'state' => $metadata['state'],
+            'total' => $metadata['total'],
+            'status' => 'paid',
+            'reference' => $reference,
         ]);
 
-        foreach($cart->cartitems as $cartItem){
+        // Create order items from cart items
+        foreach ($cart->cartitems as $cartItem) {
             OrderItems::create([
                 'order_id' => $order->id,
                 'product_id' => $cartItem->product_id,
@@ -82,79 +157,24 @@ class OrderController extends Controller
                 'discount' => $cartItem->discount,
                 'size' => $cartItem->size,
             ]);
-        }
-        $reference = 'ORD-'.$order->id.'-'.uniqid();
-        //initialize transaction
-        $response = Http::withToken(config('services.paystack.secret'))
-            ->post(config('services.paystack.base_url'). '/transaction/initialize', [
-                 'email' => Auth::user()->email,
-                 'amount' => $total*100, //in kobo
-                 'reference' => $reference,
-                 'callback_url' => config('services.paystack.callback'),
-                 'metadata' => [
-                     'order_id' => $order->id,
-                 ]
-            ]);
 
-        // ✅ Log Paystack response for debugging
-        \Log::info('Paystack initialize response', $response->json());
-
-
-        if($response->failed() || !isset($response['data']['authorization_url'])){
-            $order->update(['status' => 'failed']);
-            return back()->with('error', 'Unable to initiate Payment');
+            // Update product quantities
+            $product = Products::find($cartItem->product_id);
+            if ($product) {
+                $product->decrement('quantity', $cartItem->quantity);
+                if ($product->quantity < 1) {
+                    $product->update(['sold_out' => true]);
+                }
+            }
         }
 
-        $body = $response->json();
-        if(!data_get($body, 'data.authorization_url')){
-            //something wrong
-            return back()->with('error', 'Payment gateway error');
-        }
-        //save reference to order
-        $order->update(['reference' => $body['data']['reference']]);
+        // Optional: send receipt email
+        // Mail::to($user->email)->send(new OrderReceiptMail($order));
 
-        //redirect to payment_page
-        return redirect()->away($body['data']['authorization_url']);
-
-
-    }
-
-    public function handleCallback(Request $request){
-
-        $cart = Auth::user()->carts()->where('status', 'active')->first();
-
-        $reference = $request->query('reference');
-
-        $order = Auth()->user()->orders()->where('reference', $reference)->first();
-
-        $verify_response = Http::withToken(config('services.paystack.secret'))
-            ->get(config('services.paystack.base_url').'/transaction/verify/'.$reference);
-
-        if($verify_response->failed()){
-            dd('failed');
-            //return redirect()->route('order.index')->with('error', 'Unable to verify Payment');
-        }
-        $body = $verify_response->json();
-        if(data_get($body, 'data.status') !== 'success'){
-            // Payment not successful
-            Orders::where('reference', $body['data']['reference'])
-                ->update(['status' => 'failed']);
-            return redirect()->route('order.index')->with('error', 'Payment was not Successful');
-        }
-
-        $order->update(['status' => 'paid']);
-        foreach ($cart->cartitems as $cartitems){
-           $product =  Products::where('id', $cartitems->product_id)->first();
-           $product->update(['quantity' =>$product->quantity - $cartitems->quantity]);
-           if($product->quantity < 1){
-               $product->update(['sold_out' => true]);
-           }
-        }
-      //  Mail::to(Auth()->user()->email)->send(new OrderReceiptMail($order));
+        // Delete the cart after order completion
         $cart->delete();
 
-
-        return redirect()->route('order.main')->with('success', 'Payment was Successful');
+        return redirect()->route('order.main')->with('success', 'Payment was successful and your order has been placed.');
     }
 
     public function receipt(Orders $order)
